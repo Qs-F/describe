@@ -1,0 +1,29 @@
+#!/home/qsf/dev/go/bin/anko
+var os, ioutil, fmt = import("os"), import("io/ioutil"), import("fmt")
+wd, err = os.Getwd()
+if err != nil {
+  fmt.Println(err.Error())
+}
+dir = ""
+if len(os.Args) > 1 {
+  dir = os.Args[1] + "/"
+} else {
+  dir = "./"
+}
+# fmt.Println("searching in `"+dir+"`...")
+fs, err = ioutil.ReadDir(dir)
+if err != nil {
+  fmt.Println(err.Error())
+}
+for i=0;i<len(fs);i++ {
+  f = fs[i]
+  if f.IsDir() {
+    b, err = ioutil.ReadFile(dir + f.Name() + "/.describe")
+    if err != nil {
+      # fmt.Println(err.Error())
+    } else {
+      fmt.Printf(`%s
+  %s`, wd+"/"+f.Name(), b)
+    }
+  }
+}
