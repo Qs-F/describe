@@ -4,27 +4,22 @@ give description of directory.
 
 ## infomation
 
-This is originally private repository.  
-Use with `Qs-F/gondom` and `Qs-F/akdir` at the same time.
+This is originally private repository.
 
-Like this:
+Use with `Qs-F/gondom` and `Qs-F/akdir` at the same time.  
+To create workspace:
 
 ```
 cd $GOPATH/localhost/tmp
 gondom 5 | akdir
-describe "Golang struct and pointer try"
+>> eg. 0j3ER
+cd 0j3ER
+describe -init
+echo "Test dir" > .describe
 ```
 
-or when I want to find,
+And search workspace:
 
 ```
-cd $GOPATH/localhost/tmp
-describe -l
-# print all described directories in list in "tmp" directory
-```
-
-```
-cd $GOPATH/localhost/tmp
-describe -s "Golang"
-# print search result in list
+describe $GOPATH/localhost/tmp
 ```
