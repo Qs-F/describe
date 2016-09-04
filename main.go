@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"regexp"
 
 	"github.com/Qs-F/coloring"
 )
@@ -51,7 +52,7 @@ func main() {
 				continue
 			} else {
 				fmt.Printf(`%s
-  %s`, wd+"/"+f.Name(), coloring.Yellow(fmt.Sprintf("%s", b)))
+  %s`, wd+"/"+f.Name(), coloring.Yellow(regexp.MustCompile(`\n  $`).ReplaceAllString(regexp.MustCompile(`\n`).ReplaceAllString(string(b), "\n  "), "\n")))
 			}
 		}
 	}
