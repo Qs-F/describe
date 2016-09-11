@@ -25,7 +25,7 @@ func main() {
 		}
 		return
 	} else if *m == true && err == nil {
-		fmt.Println("There is a .describe file. Please remove it.")
+		fmt.Println("There is already .describe file. Please remove it.")
 		return
 	}
 	wd, err := os.Getwd()
@@ -51,8 +51,10 @@ func main() {
 			if err != nil {
 				continue
 			} else {
-				fmt.Printf(`%s
+				if ok, _ := regexp.Match(`\A[\s|]*\z`, b); !ok {
+					fmt.Printf(`%s
   %s`, wd+"/"+f.Name(), coloring.Yellow(regexp.MustCompile(`\n  $`).ReplaceAllString(regexp.MustCompile(`\n`).ReplaceAllString(string(b), "\n  "), "\n")))
+				}
 			}
 		}
 	}
