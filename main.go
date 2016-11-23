@@ -7,7 +7,7 @@ import (
 	"os"
 	"regexp"
 
-	"github.com/Qs-F/coloring"
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -53,7 +53,7 @@ func main() {
 			} else {
 				if ok, _ := regexp.Match(`\A[\s|]*\z`, b); !ok {
 					fmt.Printf(`%s
-  %s`, wd+"/"+f.Name(), coloring.Yellow(regexp.MustCompile(`\n  $`).ReplaceAllString(regexp.MustCompile(`\n`).ReplaceAllString(string(b), "\n  "), "\n")))
+  %s`, wd+"/"+f.Name(), color.YellowString(regexp.MustCompile(`\n  $`).ReplaceAllString(regexp.MustCompile(`\n`).ReplaceAllString(string(b), "\n  "), "\n")))
 				}
 			}
 		}
